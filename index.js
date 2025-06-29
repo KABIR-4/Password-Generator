@@ -25,16 +25,19 @@ function generatePassword( length, includeLowercase , includeUppercase , include
         return`(At least 1 set of character needs to be selected)`
     }
      
-     
+     for(let i =0; i < length; i++){
+        const randomIndex = Math.floor(Math.random()  *allowChars.length)
+        password += allowChars[randomIndex]; 
+    }
     
-return '' ;
+return password ;
 
 }
 
 
 const passwordLength = 12 ;
 const includeLowercase = true;
-const includeUppercase = true;
+const includeUppercase =true;
 const includeNumbers = true;
 const includeSymbols = true;
 
@@ -44,4 +47,9 @@ const password = generatePassword(passwordLength,
                                  includeNumbers,
                                  includeSymbols );
 
-console.log(`Genrated password: ${password}`) ;                                
+console.log(`Genrated password: ${password}`) ;       
+
+document.getElementById("generateBtn").addEventListener("click", function () {
+    const password = generatePassword(12, true, true, true, true);
+    document.getElementById("passwordOutput").value = password;
+});
